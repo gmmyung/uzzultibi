@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>Page Title</title>
+    </head>
+    <body>
+
+    <h1 id="attackphrase">어쩔티비~</h1>
+    <p>혼쭐내자!</p>
+    <p>
+        저쩔 <input type="text" id="revenge" value="티비" />
+        <input type="button" id="submit" value="반격">
+    </p>
+    <p>
+        <div>
+            반격버튼 누르면 한 5초 뒤에 어쩔봇한테 답장 날아옴
+        </div>
+        <div>
+            노인정: 너무 어거지다, 내가이김: 너무 흔한 단어다
+        </div>
+        <div>
+            첨 만든 웹사이트니까 이상한거 하지 마셈 (반격 버튼 광클, url에 이상한 값 입력)
+        </div>
+    </p>
+    <script>
+        var surrender = false;
+        var attack = '티비'
+        var submit = document.getElementById("submit");
+        var attackphrase = document.getElementById("attackphrase");
+        submit.addEventListener('click', ()=>{
+            fetch(`/uzzultibi?first=${attack}&second=${document.getElementById('revenge').value}`)
+            .then((response) => {
+                newAttack = response.text().then((res)=>{
+                    newAttack = res;
+                    console.log(newAttack);
+                    if(newAttack=='0'){
+                        attackphrase.innerHTML = '으악졌다';
+                    }else if(newAttack=='1'){
+                        attackphrase.innerHTML = `응~ 내가이김~\n어쩔 ${attack}~`;
+                    }else if(newAttack==2){
+                        attackphrase.innerHTML = `응~ 노인정~\n어쩔 ${attack}~`;
+                    }else{
+                        attack = newAttack;
+                        attackphrase.innerHTML = `어쩔${attack}~`
+                    }
+                });
+            });
+        })
+    </script>
+    </body>
+    </html>

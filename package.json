@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "express": "^4.17.2",
     "google-trends-api": "^4.9.2",
-    "mongoose": "^6.1.7"
+    "mongoose": "^6.1.7",
+    "sanitize": "^2.1.0"
   }
 }

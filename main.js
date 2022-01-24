@@ -1,12 +1,8 @@
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
-var qs = require('querystring');
 var compKey = require('./compareKeyword');
 const path = require('path');
-var webPage = require('./webPage');
-
-
 
 
 var app = http.createServer((req, res)=>{
@@ -19,13 +15,19 @@ var app = http.createServer((req, res)=>{
     if (pathname == '/uzzultibi'){
         if((keyword1 != undefined) || (keyword2 != undefined)){
             console.log(`keyword1: ${keyword1}, keyword2: ${keyword2}`);
-            compKey.compareKeywords(keyword1, keyword2).then((result)=>{
+            compKey.serverAttack(keyword1, keyword2, (result)=>{
+                console.log(`result: ${result}`);
                 res.writeHead(200);
                 res.end(result.toString());
             });
         }else{
-            res.writeHead(200);
-            res.end(webPage.webPage());
+            fs.readFile('webPage.html', (err, Page)=>{
+                res.writeHead(200);
+                res.end(Page);
+            })
+            
+            
+            
         }
     }
     else if(pathname == '/favicon.ico'){
