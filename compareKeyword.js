@@ -217,7 +217,7 @@ function main(){
 if(module.parent) {
     console.log('required module');
 } else{
-    main(keywordDB);
+    main();
 }
 
 module.exports = {
